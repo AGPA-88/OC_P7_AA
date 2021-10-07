@@ -1,0 +1,26 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "rules": {  /*https://eslint.org/docs/user-guide/configuring/rules*/
+        "indent": [ /* indentation 4 espaces sinon erreurs*/
+            "error",
+            4
+        ],
+        "semi": [ /* point virgules pour marquer la fin des instructions*/
+            "error",
+            "always"
+        ],
+        "use-isnan": "error", /* obliger d'utiliser la fonction isnan pour tester si un nombre est bien de type number*/
+        "for-direction": "error", /* error quand le sens de la boucle n'est pas le bon*/
+        "eqeqeq": "warn", /* warning si utilisation d'une egalité non strict == aulieu de ===*/
+        "no-control-regex":"off", /* ne pas controler les regex*/
+        "no-useless-escape":"off"  /*  pas d'échapement inutiles (alt gr 8)*/
+    }
+}
