@@ -1,0 +1,129 @@
+.main_postpage {
+  min-height: 39vh;
+}
+
+.create-card {
+  /* background: linear-gradient(white, white, #243b55); */
+  background: white;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .create-card {
+    min-width: 300px;
+  }
+}
+
+.btn {
+  border-radius: 20px;
+  border: 1px solid #243b55;
+  background-color: #243b55;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  -webkit-transition: -webkit-transform 80ms ease-in;
+  transition: -webkit-transform 80ms ease-in;
+  transition: transform 80ms ease-in;
+  transition: transform 80ms ease-in, -webkit-transform 80ms ease-in;
+}
+
+@media screen and (max-width: 768px) {
+  .btn {
+    max-width: 120px;
+    padding: 12px;
+  }
+}
+
+.text-style {
+  font-family: 'Montserrat', sans-serif;
+  color: #243b55;
+}
+
+@media screen and (max-width: 1025px) {
+  .text-style {
+    text-align: center;
+  }
+}
+
+textarea {
+  min-block-size: 250px;
+  background: #243b55;
+  color: white;
+  border: none;
+  /* padding: 12px 15px;
+    margin: 8px 0; */
+}
+
+@media screen and (max-width: 1025px) {
+  textarea {
+    min-block-size: 350px;
+  }
+}
+
+@media screen and (max-width: 1025px) and (max-width: 768px) {
+  textarea {
+    min-block-size: 500px;
+  }
+}
+
+.icons :hover {
+  background: #243b55;
+  color: white;
+  border-color: #243b55;
+}
+
+.icons_active {
+  display: none;
+}
+
+.img-load {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.image_link {
+  width: 100%;
+  display: none;
+  -webkit-transition: ease-in 1s;
+  transition: ease-in 1s;
+}
+
+.image_link input {
+  background: #243b55;
+  color: white;
+  border: none;
+  width: 100%;
+}
+
+.close-btn {
+  cursor: pointer;
+  -webkit-transform: translateX(15px) translateY(-30px);
+          transform: translateX(15px) translateY(-30px);
+}
+
+#imageValued {
+  width: 100%;
+}
+
+@media screen and (max-width: 1025px) {
+  #imageValued {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    min-width: 0;
+    width: 90%;
+    height: 150px;
+  }
+}
+/*# sourceMappingURL=post-page.css.map */

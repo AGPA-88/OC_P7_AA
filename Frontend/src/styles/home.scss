@@ -1,0 +1,50 @@
+@import "../styles/responsive.scss";
+
+.home_main{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    max-width: 2000px;
+    width: 100%;
+    @include tablet-view-down{
+        display: grid;
+        grid-template-columns: 1fr;
+        overflow: hidden;
+        // transform: translateX(0) translateY(0); 
+        // width: 100%;
+        // height: 100%;
+      }
+}
+.page{
+    margin: 0;
+    padding: 0;
+};
+body {
+    margin: 0;
+    padding: 0;
+};
+.grid_container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+.posts{
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    
+    @include tablet-view-down{
+        // width: 100%;
+        // margin-top: -300px;
+        align-items: center;
+      }
+}
+.aside{
+    display: grid;
+    grid-row: initial;
+    //background-color: white;
+    @include tablet-view-down{
+        
+      }
+};

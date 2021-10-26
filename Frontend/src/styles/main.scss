@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+
+#main{
+    background-color: rgba(0, 0, 0, 0);
+    //margin-top: -200px;
+    // display: grid;
+    // grid-template-rows: 1fr;
+    // overflow: hidden;
+
+}
+
+#card-user{
+    background: linear-gradient(rgba(0, 0, 0, 0), #243b55);
+    height: 500px;
+    // align-content: center;
+    // margin-right: 25%;
+    // margin-left: 25%;
+}
+
+#text{
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}

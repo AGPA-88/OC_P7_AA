@@ -1,0 +1,14 @@
+@import "../styles/responsive.scss";
+
+.posts {
+    background: rgba(0,0,0,0);
+    // background: #65ddb7;
+
+    // @include tablet-view-down{
+    //     width: 90%;
+    //     @include mobile-view-down{
+    //       min-width: 100px;
+      
+    //     }
+    //   }
+}

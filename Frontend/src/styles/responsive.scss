@@ -1,0 +1,24 @@
+//BREAKPOINT
+$mobile-to-tablet: 768px;
+
+$tablet-to-desktop: 1025px;
+
+//MEDIA QUERIES
+
+//Desktop First Media Queries
+
+@mixin mobile-view-down{
+
+    @media screen and (max-width: $mobile-to-tablet){
+        @content;
+    }
+    
+}
+
+@mixin tablet-view-down{
+    
+    @media screen and (max-width: $tablet-to-desktop){
+        @content;
+    }
+    
+}

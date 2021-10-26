@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,MAAM,CAAC;EACH,UAAU,EAAE,gBAAa;CAU5B",
+    "sources": [
+        "posts.scss",
+        "responsive.scss"
+    ],
+    "names": [],
+    "file": "posts.css"
+}

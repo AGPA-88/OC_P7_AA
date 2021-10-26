@@ -1,0 +1,119 @@
+$logo: #3DBB3D;
+$gray: #777777;
+$black: #070707;
+$green: #7ED386;
+$aqua: #3FB6A8;
+$white: #FFFFFF;
+
+@import "../styles/responsive.scss";
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,900|Montserrat|Roboto');
+
+$heading: 'Montserrat', sans-serif;
+$body: 'Roboto', sans-serif;
+
+.settings-body {
+  background-color: rgba(0,0,0,0);
+}
+
+// .active {
+//   color: $aqua;
+// }
+
+.settings-card {
+  align-content: center;
+  background: $white;
+  width: 50%;
+  height: 100%;
+  margin: 0 auto;
+  box-shadow: 2px 5px 20px rgba(#243b55, .5);
+  border: 1px solid #243b55;
+  border-radius: 10px;
+
+  @include tablet-view-down{
+    width: 90%;
+    @include mobile-view-down{
+      min-width: 300px;
+  
+    }
+  }
+}
+
+
+.profile{
+  transition: opacity .5s ease-in;
+  
+}
+
+#user-email{
+  font-family: $heading;
+  color: #243b55;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 35px;
+  letter-spacing: 5px;
+}
+
+h1 {
+  font-family: $heading;
+  color: #243b55;
+  font-size: 35px;
+  font-weight: bolder;
+  margin-top: 40px;
+  margin-bottom: 35px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #243b55;
+  border-left: 0;
+  border-right: 0;
+}
+
+h2 {
+  color: #243b55;
+  font-family: $heading;
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: bolder;
+  letter-spacing: 10px;
+  margin-left: 2px;
+}
+
+p {
+  width: 100%;
+  font-family: $heading;
+  font-size: 1em;
+  padding: 7px 0;
+  color: #243b55;
+}
+
+.btn {
+	border-radius: 20px;
+	border: 1px solid #243b55;
+	background-color: #243b55;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+  margin: 50px;
+}
+
+.btn:hover {
+  text-decoration: none;
+  font-weight: 1000;
+}
+
+.btn-delete:hover{
+  background-color: rgb(228, 10, 10);
+  
+}
+
+input {
+	background-color: #243b55;
+  color: white;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+}

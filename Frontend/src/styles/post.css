@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+.text-style {
+  font-family: 'Montserrat', sans-serif;
+  color: #243b55;
+}
+
+.icon-style {
+  color: #243b55;
+}
+
+.interactions {
+  padding: 5px;
+}
+
+.interactions .text-style {
+  color: white;
+}
+
+.interactions .icon-style {
+  color: white;
+}
+
+.body-post {
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+}
+
+.post {
+  background-color: rgba(0, 0, 0, 0);
+  border: #243b55;
+  max-width: 70%;
+}
+
+.card {
+  min-width: 60%;
+  background: -webkit-gradient(linear, left top, left bottom, from(white), color-stop(white), to(#243b55));
+  background: linear-gradient(white, white, #243b55);
+}
+
+.card:hover {
+  border: #243b55 solid 1px;
+  -webkit-box-shadow: 2px 5px 20px #1d1d27;
+          box-shadow: 2px 5px 20px #1d1d27;
+}
+
+.card-body {
+  min-width: 50%;
+  max-width: 70%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1025px) {
+  .card-body {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    overflow: hidden;
+  }
+}
+
+.post-img {
+  margin: 25px;
+  position: center;
+}
+
+.post-img img {
+  background-position: center;
+  max-width: 600px;
+  max-height: 600px;
+}
+
+.edit-button {
+  width: 50px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#post-read {
+  color: white;
+}
+
+#post-read:hover {
+  color: #243b55;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+
+#post-read:hover .read_icon {
+  color: #243b55;
+}
+
+#post-read:hover .text_style {
+  color: #243b55;
+}
+
+.add-reader {
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 35px;
+  font-weight: bolder;
+  margin-top: 40px;
+  margin-bottom: 35px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #243b55;
+  border-left: 0;
+  border-right: 0;
+}
+
+p {
+  width: 100%;
+  font-size: 1em;
+  padding: 7px 0;
+}
+
+.interactions {
+  border-width: 1px;
+  border-style: solid;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+/*# sourceMappingURL=post.css.map */

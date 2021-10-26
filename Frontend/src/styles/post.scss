@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+@import "../styles/responsive.scss";
+
+.text-style{
+    font-family: 'Montserrat', sans-serif;
+    color: #243b55;
+
+}
+
+
+.icon-style{
+    color: #243b55;
+}
+
+.interactions{
+    padding: 5px;
+    .text-style{
+        color: white;
+    }
+    .icon-style{
+        color: white;
+    }
+}
+
+.body-post{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    overflow: hidden;
+    
+}
+
+.post{
+    background-color: rgba(0,0,0,0);
+    border: #243b55;
+    max-width: 70%;
+
+}
+
+.card{
+    min-width: 60%;
+    // max-width: 70%;
+    background: linear-gradient(white, white, #243b55);
+    &:hover{
+        border:#243b55 solid 1px;
+        box-shadow: 2px 5px 20px rgba(#1d1d27, 1);
+    } 
+}
+
+.card-body{
+    min-width: 50%;
+    max-width: 70%;
+    // margin-left: 150px;
+    justify-content: center;
+    overflow: hidden;
+
+    @include tablet-view-down{
+        display: grid;
+        grid-template-columns: 1fr;
+        overflow: hidden;
+        // margin: 25px;
+        // margin-right: 50%;
+        // margin-left: 10%;
+        // transform: translateX(0) translateY(0); 
+        // width: 100px;
+        // margin: 50px;
+        // height: 100%;
+      }
+}
+
+.post-img{
+    margin: 25px;
+    position: center;
+    img{
+        background-position: center;
+        max-width: 600px;
+        max-height: 600px;
+    }
+
+}
+
+.edit-button{
+    width: 50px;
+    padding: 10px;
+    background-color: rgba(0,0,0,0);
+    // color: #243b55;
+}
+
+// .icon-btn{
+//     :hover{
+//         cursor: pointer;
+//         color: #243b55;
+//         transition: 0.5s ease-in-out;
+//         // background: red;
+//     }
+// }
+
+#post-read{
+    color: white;
+    &:hover{
+        & .read_icon {
+            color: #243b55;
+        }
+        & .text_style{
+            color: #243b55;
+        }
+        color: #243b55;
+        transition: 0.5s ease-in-out;
+    }
+}
+
+.add-reader{
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 35px;
+    font-weight: bolder;
+    margin-top: 40px;
+    margin-bottom: 35px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #243b55;
+    border-left: 0;
+    border-right: 0;
+  }
+  
+  p {
+    width: 100%;
+    font-size: 1em;
+    padding: 7px 0;
+    
+  }
+  .interactions{
+    border-width: 1px;
+    border-style: solid;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    // border-color: #243b55;
+  }

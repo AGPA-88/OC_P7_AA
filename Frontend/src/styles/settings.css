@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,900|Montserrat|Roboto");
+.settings-body {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.settings-card {
+  -ms-flex-line-pack: center;
+      align-content: center;
+  background: #FFFFFF;
+  width: 50%;
+  height: 100%;
+  margin: 0 auto;
+  -webkit-box-shadow: 2px 5px 20px rgba(36, 59, 85, 0.5);
+          box-shadow: 2px 5px 20px rgba(36, 59, 85, 0.5);
+  border: 1px solid #243b55;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1025px) {
+  .settings-card {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 1025px) and (max-width: 768px) {
+  .settings-card {
+    min-width: 300px;
+  }
+}
+
+.profile {
+  -webkit-transition: opacity .5s ease-in;
+  transition: opacity .5s ease-in;
+}
+
+#user-email {
+  font-family: "Montserrat", sans-serif;
+  color: #243b55;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 35px;
+  letter-spacing: 5px;
+}
+
+h1 {
+  font-family: "Montserrat", sans-serif;
+  color: #243b55;
+  font-size: 35px;
+  font-weight: bolder;
+  margin-top: 40px;
+  margin-bottom: 35px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #243b55;
+  border-left: 0;
+  border-right: 0;
+}
+
+h2 {
+  color: #243b55;
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: bolder;
+  letter-spacing: 10px;
+  margin-left: 2px;
+}
+
+p {
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1em;
+  padding: 7px 0;
+  color: #243b55;
+}
+
+.btn {
+  border-radius: 20px;
+  border: 1px solid #243b55;
+  background-color: #243b55;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  -webkit-transition: -webkit-transform 80ms ease-in;
+  transition: -webkit-transform 80ms ease-in;
+  transition: transform 80ms ease-in;
+  transition: transform 80ms ease-in, -webkit-transform 80ms ease-in;
+  margin: 50px;
+}
+
+.btn:hover {
+  text-decoration: none;
+  font-weight: 1000;
+}
+
+.btn-delete:hover {
+  background-color: #e40a0a;
+}
+
+input {
+  background-color: #243b55;
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+}
+/*# sourceMappingURL=settings.css.map */

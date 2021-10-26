@@ -1,0 +1,236 @@
+@import "../styles/responsive.scss";
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,900|Montserrat');
+$heading: 'Montserrat', sans-serif;
+
+@mixin borderRadius {
+  border-radius: 10px;
+  @include tablet-view-down{
+    border-radius: 0px;
+  }  
+}
+
+.main_profile{
+  width: 100%;
+
+.content{
+  min-height: 50vh;
+  max-width: 1500px;
+  display: flex;
+  justify-content: space-around;
+  @include tablet-view-down{
+    flex-direction: column;   
+    max-width: 100%;
+    align-items: center;
+    gap:0;
+  }
+}
+}
+.img_mgt{
+  display: flex;
+  flex-direction: column;
+  @include tablet-view-down{
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    width: 100%;
+  }
+}
+.avatar{
+  width: 300px;
+  min-height: 100px;
+  // opacity: 70%;
+  background-color: #243b55;
+  overflow: hidden;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  box-shadow: 2px 5px 20px rgba(#1d1d27, 1);
+
+  @include borderRadius;
+  @include tablet-view-down{
+    width: 100%;
+    background-color: rgba(0,0,0,0);
+  }
+
+}
+.img_avatar{
+  overflow: hidden;
+  @include borderRadius;
+  @include tablet-view-down{
+    width: 80%;
+    border: #243b55 solid 5px;
+  }
+}
+.add_btn{
+  width: 40px;
+  height: 40px;
+  transform: translateY(60px) translateX(20px);
+  z-index: 4;
+  @include tablet-view-down{
+    width: 70px;
+    height: 70px;
+    transform: translateY(-10px) translateX(calc(50vw - 35px));
+    margin-top: -70px;
+    & i {
+      font-size: 50px;
+    }
+  }
+}
+.name{
+  width: 500px;
+  height: 300px;
+  background-color: #ff8c00;
+  opacity: 60%;
+  z-index: 1;
+  transform: translateX(300px) translateY(250px);  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  padding-top: 50px;
+  box-shadow: 2px 5px 20px rgba(#1d1d27, .6);
+  @include borderRadius;
+  @include tablet-view-down{
+    transform: translateX(0) translateY(0); 
+    width: 100%;
+    height: 100%;
+  }
+
+}
+.firstname {
+  font-family: $heading;
+  font-size: 40px;
+  color: #243b55;
+  font-weight: bolder;
+  letter-spacing: 5px;
+}
+.lastname {
+  font-family: $heading;
+  font-size: 50px;
+  padding-left: 20px;
+  color: #243b55;
+  font-weight: bolder;
+  letter-spacing: 5px;
+}
+.infos{
+  width: 600px;
+  height: 600px;
+  z-index:2;
+  background-color: white;    
+  transform: translateX(-100px) translatey(100px);   
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 2px 5px 20px rgba(#1d1d27, .8);
+  @include borderRadius;
+  @include tablet-view-down{
+    width: 100%;
+    transform: translateX(0) translateY(0); 
+  }
+}
+// p {
+// border-style: solid;
+// border-image: rgba(0, 0, 0, 0);
+// border-image: #243b55;
+// width: 100%;
+// font-size: 1em;
+// color: #243b55;
+// }
+.modal{
+position: fixed;
+top:0;
+width: 100%;
+height: 100%;
+background-color: rgba(0,0,0,0.7);
+z-index: 5;
+display: none;
+justify-content: center;
+align-items: center;
+}
+.avatar_link{
+display: flex;
+align-items: center;
+padding: 15px;
+position: absolute;
+height: 100px;
+min-width: 400px;
+background-color: white;
+border: purple solid 2px;
+@include tablet-view-down{
+  flex-direction: column;
+  min-width: 0;
+  width: 90%;
+  height: 150px;
+}
+
+}
+.avatar_link > * {
+margin:5px;
+}
+.avatar_link input {
+min-width: 600px;
+width: 100%;
+@include tablet-view-down{
+  min-width: 0;
+  width: 90%;
+}
+}
+
+h1 {
+  font-family: $heading;
+  color: #243b55;
+  font-size: 35px;
+  font-weight: bolder;
+  letter-spacing: 10px;
+  margin-top: 40px;
+  margin-bottom: 35px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #243b55;
+  border-left: 0;
+  border-right: 0;
+}
+
+p {
+  width: 100%;
+  font-family: $heading;
+  font-size: 1em;
+  padding: 7px 0;
+  color: #243b55;
+}
+
+.btn {
+border-radius: 20px;
+border: 1px solid #243b55;
+background-color: #243b55;
+color: #FFFFFF;
+font-size: 12px;
+font-weight: bold;
+padding: 12px 45px;
+letter-spacing: 1px;
+text-transform: uppercase;
+transition: transform 80ms ease-in;
+}
+
+.btn:hover {
+text-decoration: none;
+font-weight: 1000;
+}   
+input {
+background-color: #243b55;
+color: white;
+border: none;
+padding: 12px 15px;
+margin: 8px 0;
+}
+.close-btn{
+cursor: pointer;
+transform: translateX(15px) translateY(-30px);
+@include tablet-view-down{
+  transform: translateX(calc(45vw - 20px)) translateY(-147px);
+}
+@include mobile-view-down{
+  transform: translateX(calc(45vw - 15px)) translateY(-140px);
+}
+}
