@@ -16,22 +16,22 @@
 const db = require("../config/db.config");
 const {Sequelize, DataTypes} = require("sequelize");
 
-  const ThingModel = db.define("post", {
+const ThingModel = db.define("post", {
     title: {
-      type: DataTypes.STRING
+        type: DataTypes.STRING
     },
     description: {
-      type: DataTypes.STRING
+        type: DataTypes.STRING
     },
     imageUrl: {
-      type: DataTypes.STRING
+        type: DataTypes.STRING
     },
     userId: {
-      type: DataTypes.NUMBER
+        type: DataTypes.NUMBER
     },
     readerUsers: {
-      type: DataTypes.STRING
+        type: DataTypes.STRING
     }
-  });
+});
 
-  module.exports = ThingModel;
+module.exports = ThingModel;

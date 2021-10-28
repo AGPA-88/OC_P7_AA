@@ -12,11 +12,23 @@
                 </div>
                 <!-- Remove Button -->
                 <div class="bg-gray-100	rounded-full h-3.5 flex	items-center justify-center edit-button">
-                    <button type="button" @click="deletePost">
+                    <button type="button" @click="expandPost">
+                        <span class="material-icons-outlined">
+                        open_in_new
+                        </span>
+                    </button>
+                    &nbsp;
+                    <button type="button" @click="editPost">
+                        <span class="material-icons-outlined">
+                        {{ getEditIcon }}
+                        </span>
+                    </button>
+                    <button type="button" @click="deleteThePost">
                         <span class="material-icons-outlined">
                         {{ getDeleteIcon }}
                         </span>
                     </button>
+                    &nbsp;
                 </div>
             </div>
             <div class="whitespace-pre-wrap mt-7 text-style">
@@ -93,6 +105,11 @@ export default {
                 return "Unread";
             }
         },
+        getEditIcon (){
+            if (this.isUserTheWritter()){
+                return "edit_note";
+            }
+        },
         getDeleteIcon (){
             if (this.isUserTheWritter()){
                 return "delete";
@@ -106,7 +123,7 @@ export default {
     methods: {
         ...Vuex.mapActions(
             [
-                'updatePost'
+                'updateReaders', 'deletePost'
             ]
         ),
         isUserAPostReader: function () {
@@ -121,15 +138,21 @@ export default {
         },
         post_read: function (){
             if (!this.isUserAPostReader()){
-                this.updatePost({post_id:this.post.id, userId:sessionStorage.getItem('userId')});
+                this.updateReaders({post_id:this.post.id, userId:sessionStorage.getItem('userId')});
             }
         },
-        deletePost: function (event){
+        deleteThePost: function (event){
             event.preventDefault(); 
             if (this.post.userId === sessionStorage.getItem('userId')){
-                axios.delete('http://localhost:3000/api/posts/' + this.post.id);
-                window.location.href="/";
+                this.deletePost(this.post.id);
+
             }
+        },
+        expandPost: function(){
+            document.location.href= '/singlePost?id=' + this.post.id;
+        },
+        editPost: function(){
+            document.location.href= '/editPost?id=' + this.post.id;
         }
     },
     props:[

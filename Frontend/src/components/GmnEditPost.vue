@@ -4,7 +4,7 @@
 
         <form @submit.prevent="handleSubmit">
             <div class="main_postpage">
-                <div class="heading text-center font-bold text-2xl m-5 text-gray-800 text-style">New Post</div>
+                <div class="heading text-center font-bold text-2xl m-5 text-gray-800 text-style">Edit Post</div>
                 <div class="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl create-card">
                     <input v-model="form.title" class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none text-style" id="titleValue" spellcheck="false" placeholder="Title" type="text" required>
                     <textarea v-model="form.message" class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none text-style" id="descriptionValue" spellcheck="false" placeholder="Describe everything about this post here" required></textarea>
@@ -35,11 +35,13 @@
 import GmnFooter from './GmnFooter.vue';
 import GmnHeader from './GmnHeader.vue';
 import vuex from 'vuex';
-import axios from 'axios';
+import store from './UsersStore';
 
 export default  {
     components: { GmnHeader, GmnFooter },
-    
+    computed: {
+        ...vuex.mapGetters(['post_title','post_description', 'post_imageUrl', 'post_userId'])
+    },
     data(){
         return {
             index_header:2,
@@ -49,9 +51,9 @@ export default  {
 
             form:{
                 userId: '',
-                title:'',
-                description:'',
-                media:''
+                title: this.post_title,
+                description: this.post_description,
+                media: this.post_imageUrl
             }
 
         };
@@ -60,22 +62,14 @@ export default  {
     methods:{
       
         handleSubmit(){
- 
-            //Using FormData because of file post
-            // const _form = new FormData();
-            // _form.append('title', this.form.title);
-            // // _form.append('media', this.form.media);
-            // _form.append('description', this.form.message);
-            // _form.append('userId', sessionStorage.getItem('userId'));
-            // console.log(_form);
             const _form = {
+                id: document.location.href.split('id=')[1],
                 title: this.form.title,
                 description: this.form.message,
-                userId: sessionStorage.getItem('userId'),
                 imageUrl: this.form.media
             };
       
-            this.createPost(_form);
+            this.updatePost(_form);
         },
 
         open_link () {
@@ -96,7 +90,23 @@ export default  {
             activeButton.style.display="none";
         },
           
-        ...vuex.mapActions(['createPost'])
+        ...vuex.mapActions(['updatePost', 'getPost'])
+    },
+    mounted () {
+        this.getPost(document.location.href.split('id=')[1]);
+        let unsubscribe = null;
+        unsubscribe = store.subscribe(({ type }) => {
+            if (type === 'GET_POST') {
+                if (this.post_userId !== sessionStorage.getItem('userId')){
+                    window.location.href='/singlepost?id=' + document.location.href.split('id=')[1];
+                }
+                unsubscribe(); // So it only reacts once.
+                this.form.title = this.post_title;
+                this.form.message = this.post_description;
+                this.form.media = this.post_imageUrl;
+            }
+        });
+
     }
 };
 

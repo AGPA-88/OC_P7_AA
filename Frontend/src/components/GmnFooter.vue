@@ -17,7 +17,7 @@
                 
             </div>
                 <div class="text-sm text-color mb-10 f-f-l">
-                    <img src="static/image/icon-text.png" alt="Groupomania Logo">
+                    <!-- <img src="static/image/icon-text.png" alt="Groupomania Logo"> -->
                     <p id="footer-p">© 2021 Groupomania. All rights reserved</p>
                 </div>
             </div>

@@ -15,7 +15,7 @@ function clickItem(item, index,) {
     }
     
     
-    if (activeItem === item) return;
+    // if (activeItem === item) return;
     
     if (activeItem) {
         activeItem.classList.remove("active");

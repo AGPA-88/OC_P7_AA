@@ -43,7 +43,6 @@ export default  {
                 userId: '',
                 user_firstname:'',
                 user_lastname:'',
-                // media:''
             }
         };
     },
@@ -63,7 +62,7 @@ export default  {
             };
       
             //Api call -post
-            axios.post("http://localhost:3000/api/posts/",
+            axios.put("http://localhost:3000/api/auth/",
                 //The data
                 _form,
                 {headers: { authorization: 'Bearer ' + sessionStorage.getItem('token')}}
@@ -80,6 +79,7 @@ export default  {
                 });
 
         }, 
+        ...vuex.mapActions(['updateUser'])
   
     }
 };

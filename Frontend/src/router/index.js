@@ -5,8 +5,9 @@ import GmnAccess from '@/components/GmnAccess';
 import GmnProfile from '@/components/GmnProfile';
 import GmnPostPage from '@/components/GmnPostPage';
 import GmnSettings from '@/components/GmnSettings';
+import GmnSinglePost from '@/components/GmnSinglePost';
+import GmnEditPost from '@/components/GmnEditPost';
 import Gmn from '@/components/Gmn';
-import Sauces from '@/components/Sauces';
 import store from '@/components/UsersStore';
 
 Vue.use(Router);
@@ -37,11 +38,6 @@ export default new Router({
             component: Home
         },
         {
-            path: '/sauces',
-            name: 'Sauces',
-            component: Sauces
-        },
-        {
             path: '/access',
             name: 'GmnAccess',
             beforeEnter: ifNotAuthenticated,
@@ -69,6 +65,16 @@ export default new Router({
             path: '/form',
             name: 'Gmn',
             component: Gmn
+        },
+        {
+            path: '/singlepost',
+            name: 'GmnSinglePost',
+            component: GmnSinglePost
+        },
+        {
+            path: '/editpost',
+            name: 'GmnEditPost',
+            component: GmnEditPost
         }
     ]
 });

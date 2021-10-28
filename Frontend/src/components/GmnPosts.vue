@@ -8,7 +8,6 @@ import GmnPost from '@/components/GmnPost';
 import vue from 'vue';
 import vuex from 'vuex';
 
-// import GmnHeader from './GmnHeader.vue';
 export default {
     name: 'GmnPosts',
     components:{

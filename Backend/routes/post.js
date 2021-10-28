@@ -9,26 +9,22 @@ const multer = require('../middleware/multer-config');
 // Middleware
 
 //GET
-// router.get('/', auth, sauceCtrl.getSauces);  
-// router.get('/:id', auth, sauceCtrl.getSauce);
-router.get('/', postCtrl.getPosts);  
-//router.get('/:id', postCtrl.getPosts);
+router.get('/:id', auth, postCtrl.getPost);
+router.get('/', auth, postCtrl.getPosts);  
+
 
 //POST
-router.post('/', postCtrl.createPost);
-//router.post('/:id/like', auth, sauceCtrl.likeSauce);
-//router.post('/', auth, multer, sauceCtrl.createSauce);
+router.post('/', auth, postCtrl.createPost);
 
 module.exports = router;
 // //PUT
-router.put('/update/:id', postCtrl.update);
-// //router.put('/:id', auth, sauceCtrl.putSauce);
-// router.put('/:id', auth, multer, sauceCtrl.putSauce);
+router.put('/update/:id', auth, postCtrl.update);
+// //router.put('/:id', auth, postCtrl.putSauce);
+// router.put('/:id', auth, multer, postCtrl.putSauce);
 // router.put('/:id', sauceCtrl.putSauce);
 
 //DELETE
-//router.delete('/:id', auth, postCtrl.deletePost);
-router.delete('/:id', postCtrl.deletePost);
+router.delete('/:id', auth, postCtrl.deletePost);
 
 // //API Message
 // router.use('/', sauceCtrl.apiMsg);

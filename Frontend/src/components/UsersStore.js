@@ -14,6 +14,15 @@ const state = {
         job:"",
         avatarUrl:""
     },
+    post: {
+        id: "",
+        userId: "",
+        title: "",
+        description: "",
+        imageUrl: "",
+        readerUsers: "",
+        createdAt: ""
+    },
     content:{
         posts: [],
         users: []
@@ -33,18 +42,24 @@ const mutations = {
         state.user.job = user.job;
         state.user.avatarUrl = user.avatarUrl;
     },
-    GET_POSTS: (state, posts) => {
-        state.content.posts = posts;
-    },
     GET_USERS: (state, users) => {
         state.content.users = users;
-    },
-    GET_USER: (state, user) => {
-        state.content.user = user;
     },
     DELETE_USER: (state, user) => {
         state.user.id = user.id;
         
+    },
+    GET_POSTS: (state, posts) => {
+        state.content.posts = posts;
+    },
+    GET_POST: (state, post) => {
+        state.post.id = post.id;
+        state.post.userId = post.userId;
+        state.post.title = post.title;
+        state.post.description = post.description;
+        state.post.imageUrl = post.imageUrl;
+        state.post.readerUsers = post.readerUsers;
+        state.post.createdAt = post.createdAt;
     },
     ADD_READERS: (state, ids) => {
         state.content.posts.forEach(post => {
@@ -53,7 +68,7 @@ const mutations = {
                 post.readerUsers += ",:" + ids.userId + ":";
             }            
         });
-    }
+    },
 };
 
 const getters = {
@@ -63,6 +78,14 @@ const getters = {
     user_description: state => state.user.description,
     user_job: state => state.user.job,
     user_avatarUrl: state => state.user.avatarUrl,
+    post_id: state => state.post.id,
+    post_title: state => state.post.title,
+    post_description: state => state.post.description,
+    post_imageUrl: state => state.post.imageUrl,
+    post_readerUsers: state => state.post.readerUsers,
+    post_userId: state => state.post.userId,
+    post_createdAt: state => state.post.createdAt,
+    
     isAuthenticated: function () {
         return sessionStorage.getItem("token") ? true : false;
     },
@@ -71,16 +94,20 @@ const getters = {
 };
 
 const actions = {
+
+    // USERS
     setUser({ commit }) {
+        let auth = {headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token')}};
         if (sessionStorage.getItem('userId')){
-            axios.get('http://localhost:3000/api/auth/' + sessionStorage.getItem('userId'))
+            axios.get('http://localhost:3000/api/auth/' + sessionStorage.getItem('userId'), auth)
                 .then(response => {
                     commit('SET_USER', response.data);
                 });
         }
     },
     updateUser({ state }, user) {
-        axios.put('http://localhost:3000/api/auth/update/' + sessionStorage.getItem('userId'), user)
+        let auth = {headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token')}};
+        axios.put('http://localhost:3000/api/auth/update/' + sessionStorage.getItem('userId'), user, auth)
             .then(response => {
                 if(response.status===201){
                     window.location.href = "/";
@@ -88,42 +115,24 @@ const actions = {
             });
     },
     updateUserAvatar({ state }, user) {
-        axios.put('http://localhost:3000/api/auth/update/' + sessionStorage.getItem('userId'), user)
+        let auth = {headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token')}};
+        axios.put('http://localhost:3000/api/auth/update/' + sessionStorage.getItem('userId'), user, auth)
             .then(response => {
                 if(response.status===201){
                     window.location.href = "/profile";
                 }
             });
     },
-    createPost({ state }, post) {
-        axios.post('http://localhost:3000/api/posts/', post)
-            .then(response => {
-                if(response.status===201){
-                    window.location.href = "/";
-                }
-            });
-    },
-    getPosts({ commit }) {
-        axios.get('http://localhost:3000/api/posts/')
-            .then(response => {
-                commit('GET_POSTS', response.data);
-            });
-    },
     getUsers({ commit }) {
-        axios.get('http://localhost:3000/api/auth/')
+        let auth = {headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token')}};
+        axios.get('http://localhost:3000/api/auth/', auth)
             .then(response => {
                 commit('GET_USERS', response.data);
             });
     },
-
-    getUser({ commit }, user) {
-        axios.get('http://localhost:3000/api/auth/' + sessionStorage.getItem('userId'), user)
-            .then(response => {
-                commit('GET_USER', response.data);
-            });
-    },
     deleteUser() {
-        axios.delete('http://localhost:3000/api/auth/' + sessionStorage.getItem('userId'))
+        let auth = {headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token')}};
+        axios.delete('http://localhost:3000/api/auth/' + sessionStorage.getItem('userId'), auth)
             .then(response => {
                 if(response.status===201){
                     sessionStorage.removeItem('userId');
@@ -132,8 +141,44 @@ const actions = {
                 }
             });
     },
-    updatePost({ state, commit }, ids) {
-        
+
+    // POSTS
+    createPost({ state }, post) {
+        let auth = {headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token')}};
+        axios.post('http://localhost:3000/api/posts/', post, auth)
+            .then(response => {
+                if(response.status===201){
+                    window.location.href = "/";
+                }
+            });
+    },
+    getPosts({ commit }) {
+        let auth = {headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token')}};
+        axios.get('http://localhost:3000/api/posts/', auth)
+            .then(response => {
+                commit('GET_POSTS', response.data);
+            });
+    },
+    getPost({ commit }, post_id) {
+        let auth = {headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token')}};
+        if (sessionStorage.getItem('userId')){
+            axios.get('http://localhost:3000/api/posts/' + post_id, auth)
+                .then(response => {
+                    commit('GET_POST', response.data);
+                });
+        }
+    },
+    updatePost({ state, commit }, post) {
+        let auth = {headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token')}};
+        if (sessionStorage.getItem('userId')){
+            axios.put('http://localhost:3000/api/posts/update/' + post.id, post, auth)
+                .then(response => {
+                    window.location.href='/singlePost?id=' + post.id;
+                });
+        }
+    },
+    updateReaders({ state, commit }, ids) {
+        let auth = {headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token')}};
         commit('ADD_READERS', ids);
         let postReaders = new Array();
         state.content.posts.forEach(post => {
@@ -142,13 +187,19 @@ const actions = {
             }            
         });
         let body = {"readerUsers": postReaders};
-        axios.put('http://localhost:3000/api/posts/update/' + ids.post_id, body)
+        axios.put('http://localhost:3000/api/posts/update/' + ids.post_id, body, auth)
             .then(response => {
                 if(response.status===201){
                     console.log('reader added');
                 }
             });
     },
+    deletePost(state, post_id){
+        let auth = {headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token')}};
+        axios.delete('http://localhost:3000/api/posts/' + post_id, auth);
+        window.location.href="/";
+    }
+
 };
 
 let store =  new Vuex.Store({
