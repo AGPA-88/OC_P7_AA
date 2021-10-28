@@ -6,8 +6,8 @@
             <div class="main_postpage">
                 <div class="heading text-center font-bold text-2xl m-5 text-gray-800 text-style">New Post</div>
                 <div class="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl create-card">
-                    <input v-model="form.title" class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none text-style" id="titleValue" spellcheck="false" placeholder="Title" type="text">
-                    <textarea v-model="form.message" class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none text-style" id="descriptionValue" spellcheck="false" placeholder="Describe everything about this post here"></textarea>
+                    <input v-model="form.title" class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none text-style" id="titleValue" spellcheck="false" placeholder="Title" type="text" required>
+                    <textarea v-model="form.message" class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none text-style" id="descriptionValue" spellcheck="false" placeholder="Describe everything about this post here" required></textarea>
                     <div class="img-load">
                         <!-- icons -->
                         <div class="icons flex text-gray-500 m-2 icons_unactive">

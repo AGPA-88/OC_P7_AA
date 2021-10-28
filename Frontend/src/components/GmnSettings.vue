@@ -19,7 +19,7 @@
             <p><button class="btn" @click="updateName">Update</button></p>
             <h1>Security</h1>
             <h2>Password</h2>
-            <p><input type="text" placeholder="•••••••" /> <button class="btn" @click="updateName">Change</button></p>
+            <p><input type="text" id="future_password" placeholder="•••••••" /> <button class="btn" @click="updatePassword">Change</button></p>
             <h1>Account</h1>
             <h2>Delete Account</h2>
             <p><button class="btn btn-delete" @click="deleteAccount">Delete</button></p>
@@ -50,6 +50,10 @@ export default {
         },
         deleteAccount (){
             this.deleteUser();
+        },
+        updatePassword(){
+            let $futur_user_password = document.querySelector("#future_password").value; 
+            this.updateUser({password: $futur_user_password});
         },
         ...vuex.mapActions(['updateUser', 'deleteUser'])
     }

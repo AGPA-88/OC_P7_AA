@@ -2,7 +2,7 @@ const Post = require ('../models/posts');
 
 //GET
 exports.getPosts = (req, res, next) => {
-    Post.find().then(
+    Post.findAll().then(
         (posts) => {
         res.status(200).json(posts);
         }
@@ -23,10 +23,9 @@ exports.createPost = (req, res, next) => {
   const post = new Post({
     title: req.body.title,
     description: req.body.description,
-    //imageUrl: url + '/images/' + req.file.filename,
     imageUrl: req.body.imageUrl,
     userId: req.body.userId,
-    readerUsers: [req.body.userId]
+    readerUsers: ":" + req.body.userId + ":"
   });
   post.save().then(
     () => {
@@ -45,8 +44,10 @@ exports.createPost = (req, res, next) => {
 
 //DELETE 
 exports.deletePost = (req, res, next) => {
-  Post.deleteOne({_id: req.params.id}).then(
-    () => {
+  // Post.deleteOne({_id: req.params.id}).then(
+  Post.findOne({where: {id:req.params.id}}).then(
+    (post) => {
+      post.destroy();
       res.status(200).json({
         message: 'Deleted!'
       });
@@ -62,9 +63,12 @@ exports.deletePost = (req, res, next) => {
 
 //Update
 exports.update = (req, res, next) => {
-  Post.findOne({
-    _id: req.params.id
-  }).then(
+  // Post.findOne({
+  //   _id: req.params.id
+  // }).then(
+  // Post.update(post, {where: {id:req.params.id}}).then( 
+  
+  Post.findOne({where: {id:req.params.id}}).then(
     (post) => {
       if(req.body.title){
         post.title = req.body.title;
@@ -76,6 +80,7 @@ exports.update = (req, res, next) => {
         post.imageUrl = req.body.imageUrl;
       }
       if(req.body.readerUsers){
+        console.log(post.readerUsers, req.body.readerUsers);
         post.readerUsers = req.body.readerUsers;
       }
       post.save().then(

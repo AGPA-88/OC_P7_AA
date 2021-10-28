@@ -15,7 +15,7 @@
                 </button>
                 <div class="avatar  shadow-lg">
                     <div class="img_avatar " >
-                        <img :src="user_avatarURL" alt="profile picture">
+                        <img :src="user_avatarUrl" alt="profile picture">
                     </div>
                 </div>
 
@@ -55,7 +55,7 @@ import GmnFooter from '@/components/GmnFooter';
 export default {
     components: { GmnHeader, GmnFooter },
     computed: {
-        ...vuex.mapGetters(['user_firstname', 'user_lastname', 'user_job','user_avatarURL', 'user_description'])
+        ...vuex.mapGetters(['user_firstname', 'user_lastname', 'user_job','user_avatarUrl', 'user_description'])
     },
     methods: {
         update () {
@@ -67,7 +67,7 @@ export default {
         updateAvatar () {
             let $avatarValue = document.querySelector("#avatarValue").value;
 
-            this.updateUserAvatar({avatarURL: $avatarValue});
+            this.updateUserAvatar({avatarUrl: $avatarValue});
         },
         open_modal () {
             let nodeModal = document.querySelector(".modal");

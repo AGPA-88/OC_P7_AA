@@ -1,6 +1,8 @@
 <template>
     <div class="page">
-        <gmn-header v-bind:header_index="0"></gmn-header>  
+        
+        <gmn-header v-bind:header_index="0"></gmn-header>
+        <img src="static/image/icon-cut.png" class="mx-auto"  alt="Groupomania Logo">  
         <div class="grid_container">
             <div class="home_main">
                 <div class="aside"><gmn-main></gmn-main></div>

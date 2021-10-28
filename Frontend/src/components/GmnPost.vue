@@ -3,10 +3,10 @@
         <div class="border bg-white mt-6 rounded-2xl p-4 card">
             <div class="flex items-center	justify-between">
                 <div class="gap-3.5	flex items-center ">
-                    <img class="object-cover bg-yellow-500 rounded-full w-10 h-10" :src="getWriter.avatarURL"/>
+                    <img class="object-cover bg-yellow-500 rounded-full w-10 h-10" :src="getWriter.avatarUrl"/>
                     <div class="flex flex-col">
                         <b class="mb-2 capitalize text-style">{{ getWriter.firstname + ' ' + getWriter.lastname}}</b>
-                        <time datetime="06-08-21" class="text-gray-400 text-xs text-style">06 August at 09.15 PM
+                        <time datetime="06-08-21" class="text-gray-400 text-xs text-style">{{ getCreationDate }}
                         </time>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                     
                 </div>
                 <!-- <div class="flex items-center justify-between mt-4">
-                    <img :src="user_avatarURL"  class="rounded-full w-10 h-10 object-cover border">
+                    <img :src="user_avatarUrl"  class="rounded-full w-10 h-10 object-cover border">
                     <div class="flex items-center	justify-between	 bg-gray-50 h-11 w-11/12 border rounded-2xl	 overflow-hidden px-4 text-style">
                         <input type="search" class="w-full py-2 pl-4 pr-10 text-sm bg-gray-100 border border-transparent appearance-none rounded-tg placeholder-gray-400 focus:bg-white focus:outline-none focus:border-blue-500 focus:text-gray-900 focus:shadow-outline-blue" style="border-radius: 25px" placeholder="Post a comment..." autocomplete="off"/>
                     </div>
@@ -62,14 +62,14 @@ export default {
         ...Vuex.mapGetters(
             [
                 'all_users',
-                'user_avatarURL'
+                'user_avatarUrl'
             ]
         ),
         getWriter: function (){
             let writer = new Object();
             this.all_users.forEach(user => {
                 
-                if (user._id === this.post.userId) {
+                if (user.id === parseInt(this.post.userId)) {
                     writer = user;
                 }
             });
@@ -97,6 +97,10 @@ export default {
             if (this.isUserTheWritter()){
                 return "delete";
             }
+        },
+        getCreationDate (){
+            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(this.post.createdAt).toLocaleDateString("en-US", options);
         }
     },
     methods: {
@@ -108,7 +112,7 @@ export default {
         isUserAPostReader: function () {
             // document.querySelector('#post-read').classList.remove('add-reader');
             // console.log(document.querySelector('#post-read').classList);
-            return this.post.readerUsers.includes(sessionStorage.getItem('userId'));
+            return this.post.readerUsers.includes(":" + sessionStorage.getItem('userId') + ":");
         },
         isUserTheWritter: function () {
             // document.querySelector('#post-read').classList.remove('add-reader');
@@ -117,14 +121,14 @@ export default {
         },
         post_read: function (){
             if (!this.isUserAPostReader()){
-                this.updatePost({post_id:this.post._id, userId:sessionStorage.getItem('userId')});
+                this.updatePost({post_id:this.post.id, userId:sessionStorage.getItem('userId')});
             }
         },
         deletePost: function (event){
             event.preventDefault(); 
             if (this.post.userId === sessionStorage.getItem('userId')){
-                axios.delete('http://localhost:3000/api/posts/' + this.post._id);
-                // window.location.href="/";
+                axios.delete('http://localhost:3000/api/posts/' + this.post.id);
+                window.location.href="/";
             }
         }
     },

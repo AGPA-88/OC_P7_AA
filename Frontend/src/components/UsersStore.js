@@ -6,13 +6,13 @@ Vue.use(Vuex);
 
 const state = {
     user: {
-        _id: "",
+        id: "",
         firstname: "",
         lastname: "",
         email: "",
         description: "",
         job:"",
-        avatarURL:""
+        avatarUrl:""
     },
     content:{
         posts: [],
@@ -25,16 +25,13 @@ const mutations = {
     ADD_USER: (state) => {
         state.user.following++;
     },
-    SET_SAUCES: (state, sauces) => {
-        state.user.sauces = sauces;
-    },
     SET_USER: (state, user) => {
         state.user.firstname = user.firstname;
         state.user.lastname = user.lastname;
         state.user.email = user.email;
         state.user.description = user.description;
         state.user.job = user.job;
-        state.user.avatarURL = user.avatarURL;
+        state.user.avatarUrl = user.avatarUrl;
     },
     GET_POSTS: (state, posts) => {
         state.content.posts = posts;
@@ -46,13 +43,14 @@ const mutations = {
         state.content.user = user;
     },
     DELETE_USER: (state, user) => {
-        state.user._id = user._id;
+        state.user.id = user.id;
         
     },
     ADD_READERS: (state, ids) => {
         state.content.posts.forEach(post => {
-            if (post._id === ids.post_id){
-                post.readerUsers.push(ids.userId);
+            if (post.id === ids.post_id){
+                // postArray.push(ids.userId);
+                post.readerUsers += ",:" + ids.userId + ":";
             }            
         });
     }
@@ -64,8 +62,7 @@ const getters = {
     user_email: state => state.user.email,
     user_description: state => state.user.description,
     user_job: state => state.user.job,
-    sauces: state => state.user.sauces,
-    user_avatarURL: state => state.user.avatarURL,
+    user_avatarUrl: state => state.user.avatarUrl,
     isAuthenticated: function () {
         return sessionStorage.getItem("token") ? true : false;
     },
@@ -74,12 +71,6 @@ const getters = {
 };
 
 const actions = {
-    setSauces({ commit }) {
-        axios.get('http://localhost:3000/api/sauces')
-            .then(response => {
-                commit('SET_SAUCES', response.data); 
-            });
-    },
     setUser({ commit }) {
         if (sessionStorage.getItem('userId')){
             axios.get('http://localhost:3000/api/auth/' + sessionStorage.getItem('userId'))
@@ -100,7 +91,7 @@ const actions = {
         axios.put('http://localhost:3000/api/auth/update/' + sessionStorage.getItem('userId'), user)
             .then(response => {
                 if(response.status===201){
-                    window.location.href = "/";
+                    window.location.href = "/profile";
                 }
             });
     },
@@ -134,7 +125,6 @@ const actions = {
     deleteUser() {
         axios.delete('http://localhost:3000/api/auth/' + sessionStorage.getItem('userId'))
             .then(response => {
-                console.log(response);
                 if(response.status===201){
                     sessionStorage.removeItem('userId');
                     sessionStorage.removeItem('token');
@@ -147,7 +137,7 @@ const actions = {
         commit('ADD_READERS', ids);
         let postReaders = new Array();
         state.content.posts.forEach(post => {
-            if (post._id === ids.post_id){
+            if (post.id === ids.post_id){
                 postReaders = post.readerUsers;
             }            
         });

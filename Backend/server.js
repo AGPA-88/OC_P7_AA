@@ -1,6 +1,9 @@
 //MONGODB PASSWORD: RVDhaf34IMTnrHQ9
 //MONGODB CONNECTION: mongodb+srv://Antonio:<password>@cluster0.5oksa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
+const mysql = require('mysql');
+const db = require('./config/db.config');
+
 const express = require('express');
 //const bodyParser = require('body-parser');
 const app = express();
@@ -49,14 +52,16 @@ app.use((req, res, next) => {
   });
 
 //Mongoose DataBase Connection
-mongoose.connect('mongodb+srv://Antonio:RVDhaf34IMTnrHQ9@cluster0.5oksa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
-    .then (() => {
-        console.log('Sucessfully connected to MongoDB!')
-    })
-    .catch(() => {
-        console.log('Unable to connect to MongoDB!')
-        console.error(error);
-    });
+// mongoose.connect('mongodb+srv://Antonio:RVDhaf34IMTnrHQ9@cluster0.5oksa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+//     .then (() => {
+//         console.log('Sucessfully connected to MongoDB!')
+//     })
+//     .catch(() => {
+//         console.log('Unable to connect to MongoDB!')
+//         console.error(error);
+//     });
+
+db.authenticate().then( () =>console.log("Data  Base Connected !")).catch((err) => console.log(err));
     
 app.use(express.json());
 //app.use(bodyParser.json());

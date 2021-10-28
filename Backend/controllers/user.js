@@ -4,7 +4,7 @@ const User = require('../models/user');
 
 //GET
 exports.getUsers = (req, res, next) => {
-    User.find().then(
+    User.findAll().then(
         (user) => {
         res.status(200).json(user);
         }
@@ -18,9 +18,7 @@ exports.getUsers = (req, res, next) => {
   };
 
   exports.getUser = (req, res, next) => {
-    User.findOne({
-      _id: req.params.id
-    }).then(
+    User.findOne({where: { id: req.params.id }}).then(
       (user) => {
         res.status(200).json(user);
       }
@@ -43,7 +41,7 @@ exports.signup = (req, res, next) => {
           password: hash,
           firstname: req.body.firstname,
           lastname: req.body.lastname,
-          avatarURL:"https://avatars.githubusercontent.com/u/67946056?v=4",
+          avatarUrl:"http://localhost:8080/static/image/icon-small.png",
           description: "",
           job:""
         });
@@ -67,10 +65,12 @@ exports.signup = (req, res, next) => {
 
 //Update
 exports.update = (req, res, next) => {
-      User.findOne({
-        _id: req.params.id
-      }).then(
+      // User.findOne({
+      //   _id: req.params.id
+      // }).then(
+      User.findOne({where: { id: req.params.id }}).then(
         (user) => {
+          console.log(req.body);
           if(req.body.firstname){
             user.firstname = req.body.firstname;
           }
@@ -83,8 +83,18 @@ exports.update = (req, res, next) => {
           if(req.body.job){
             user.job = req.body.job;
           }
-          if(req.body.avatarURL){
-            user.avatarURL = req.body.avatarURL;
+          if(req.body.avatarUrl){
+            user.avatarUrl = req.body.avatarUrl;
+            console.log(user.avatarUrl);
+          }
+          if (req.body.password){
+            console.log(req.body);
+            bcrypt.hash(req.body.password, 10).then(
+              (hash) => {
+                console.log(hash);
+                user.password= hash;
+                console.log(user.password);
+              });
           }
             user.save().then(
               () => {
@@ -104,7 +114,8 @@ exports.update = (req, res, next) => {
 
 //LOGIN
   exports.login = (req, res, next) => {
-    User.findOne({ email: req.body.email }).then(
+    // User.findOne({ email: req.body.email }).then(
+    User.findOne({where: { email: req.body.email }}).then(
       (user) => {
         if (!user) {
           return res.status(401).json({
@@ -119,11 +130,11 @@ exports.update = (req, res, next) => {
               });
             }
             const token = jwt.sign(
-                {userId: user._id}, 
+                {userId: user.id}, 
                 'RANDOM_TOKEN_SECRET',
                 { expiresIn: '24h' });
             res.status(200).json({
-              userId: user._id,
+              userId: user.id,
               token: token
             });
           }
@@ -147,24 +158,39 @@ exports.update = (req, res, next) => {
 
 //DELETE
 exports.delete = (req, res, next) => {
-  User.findOneAndRemove({ _id: req.params.id }).then(
+  // User.findOneAndRemove({ _id: req.params.id }).then(
+  //   (user) => {
+  //     if (!user) {
+  //       return res.status(401).json({
+  //         message: 'User not found!'
+  //       });
+  //     }else{
+  //       return res.status(201).json({
+  //         message: 'User deleted!'
+  //       });
+  //     }
+  //   }
+  // ).catch(
+  //   (error) => {
+  //     res.status(500).json({
+  //       error: error
+  //     });
+  //   }
+  // );
+  User.findOne({where: {id:req.params.id}}).then(
     (user) => {
-      if (!user) {
-        return res.status(401).json({
-          message: 'User not found!'
+            user.destroy().then(
+                () => {
+                  res.status(201).json({
+                    message: 'Deleted!'
+                  });
+                }
+              ).catch(
+                (error) => {
+                  res.status(400).json({
+                    error: error
+                  });
         });
-      }else{
-        return res.status(201).json({
-          message: 'User deleted!'
-        });
-      }
-    }
-  ).catch(
-    (error) => {
-      res.status(500).json({
-        error: error
-      });
-    }
-  );
+      })
 };
 

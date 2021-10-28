@@ -6,7 +6,6 @@
                 <img src="static/image/icon-small.png" alt="Groupomania Logo">
             </div>
             <div class="text-black flex flex-col md:items-center f-f-l pt-3">
-                <h1 class="text-2xl font-black" id="footer-h">Share. Comment. Enjoy.</h1>
                 <div class="my-6 text-base text-color f-f-l">
                     <ul class="md:flex items-center">
                         <li class="md:mr-6 cursor-pointer pt-4 lg:py-0">About</li>
@@ -14,7 +13,11 @@
                         <li class="cursor-pointer pt-4 lg:py-0">Privacy Policy</li>
                     </ul>
                 </div>
+            <div>
+                
+            </div>
                 <div class="text-sm text-color mb-10 f-f-l">
+                    <img src="static/image/icon-text.png" alt="Groupomania Logo">
                     <p id="footer-p">© 2021 Groupomania. All rights reserved</p>
                 </div>
             </div>

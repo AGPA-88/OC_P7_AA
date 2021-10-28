@@ -72,6 +72,7 @@ export default {
             const auth = { email: this.user_email, password: this.user_password };
             Axios.post('http://localhost:3000/api/auth/login', auth)
                 .then(response => {
+                    
                     sessionStorage.setItem('token', response.data.token);
                     sessionStorage.setItem('userId',response.data.userId);
                     window.location.href= "/";
