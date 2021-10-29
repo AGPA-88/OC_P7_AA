@@ -116,6 +116,7 @@ const actions = {
     },
     updateUserAvatar({ state }, user) {
         let auth = {headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token')}};
+        console.log(user);
         axios.put('http://localhost:3000/api/auth/update/' + sessionStorage.getItem('userId'), user, auth)
             .then(response => {
                 if(response.status===201){

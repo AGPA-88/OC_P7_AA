@@ -14,7 +14,7 @@
                     </i>
                 </button>
                 <div class="avatar  shadow-lg">
-                    <div class="img_avatar " >
+                    <div class="img_avatar flex justify-center">
                         <img :src="user_avatarUrl" alt="profile picture">
                     </div>
                 </div>

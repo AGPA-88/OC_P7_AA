@@ -85,7 +85,6 @@ exports.update = (req, res, next) => {
                 console.log(user.avatarUrl);
             }
             if (req.body.password){
-                console.log(req.body);
                 bcrypt.hash(req.body.password, 10).then(
                     (hash) => {
                         console.log(hash);
@@ -93,6 +92,7 @@ exports.update = (req, res, next) => {
                         console.log(user.password);
                     });
             }
+            console.log(user);
             user.save().then(
                 () => {
                     res.status(201).json({

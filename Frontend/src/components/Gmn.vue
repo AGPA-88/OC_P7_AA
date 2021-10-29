@@ -6,7 +6,7 @@
             <h1>Personal Info</h1>
             <h2>Email</h2>
             <p id="user-email" >{{ user_email }}</p>
-            <h2>First Name</h2>
+            <h2>First Name...</h2>
             <p>
                 <input v-model="form.firstname" id="future_firstname" type="text" placeholder="Enter first name..." required/></p>            
             <h2>Last Name</h2>

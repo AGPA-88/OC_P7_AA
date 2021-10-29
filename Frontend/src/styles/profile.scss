@@ -28,10 +28,13 @@ $heading: 'Montserrat', sans-serif;
 .img_mgt{
   display: flex;
   flex-direction: column;
+  transform: translateY(-40px);
+  z-index: 3;
   @include tablet-view-down{
     flex-direction: column-reverse;
     align-items: flex-start;
     width: 100%;
+    transform: translateY(0);
   }
 }
 .avatar{
@@ -51,6 +54,7 @@ $heading: 'Montserrat', sans-serif;
   @include tablet-view-down{
     width: 100%;
     background-color: rgba(0,0,0,0);
+    box-shadow:none;
   }
 
 }
@@ -59,7 +63,7 @@ $heading: 'Montserrat', sans-serif;
   @include borderRadius;
   @include tablet-view-down{
     width: 80%;
-    border: #243b55 solid 5px;
+    // border: #243b55 solid 5px;
   }
 }
 .add_btn{
@@ -156,7 +160,7 @@ position: absolute;
 height: 100px;
 min-width: 400px;
 background-color: white;
-border: purple solid 2px;
+// border: purple solid 2px;
 @include tablet-view-down{
   flex-direction: column;
   min-width: 0;
