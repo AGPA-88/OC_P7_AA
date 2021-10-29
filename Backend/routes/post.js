@@ -14,16 +14,11 @@ router.get('/', auth, postCtrl.getPosts);
 
 
 //POST
-router.post('/', auth, postCtrl.createPost);
-// router.post('/', auth, multer, postCtrl.createPost);
+router.post('/', auth, multer, postCtrl.createPost);
 
 module.exports = router;
 // //PUT
-router.put('/update/:id', auth, postCtrl.update);
-// //router.put('/:id', auth, postCtrl.putSauce);
+router.put('/update/:id', auth, multer, postCtrl.update);
 
 //DELETE
 router.delete('/:id', auth, postCtrl.deletePost);
-
-// //API Message
-// router.use('/', sauceCtrl.apiMsg);

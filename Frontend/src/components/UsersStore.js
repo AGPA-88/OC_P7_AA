@@ -171,9 +171,9 @@ const actions = {
     updatePost({ state, commit }, post) {
         let auth = {headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token')}};
         if (sessionStorage.getItem('userId')){
-            axios.put('http://localhost:3000/api/posts/update/' + post.id, post, auth)
+            axios.put('http://localhost:3000/api/posts/update/' + post.get('id'), post, auth)
                 .then(response => {
-                    window.location.href='/singlePost?id=' + post.id;
+                    window.location.href='/singlePost?id=' + post.get('id');
                 });
         }
     },

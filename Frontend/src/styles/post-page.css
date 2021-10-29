@@ -94,6 +94,8 @@ textarea {
 .image_link {
   width: 100%;
   display: none;
+  -ms-grid-columns: 3fr 1fr 1fr;
+      grid-template-columns: 3fr 1fr 1fr;
   -webkit-transition: ease-in 1s;
   transition: ease-in 1s;
 }
@@ -125,5 +127,12 @@ textarea {
     width: 90%;
     height: 150px;
   }
+}
+
+.small-btn {
+  background-color: #243B55;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
 }
 /*# sourceMappingURL=post-page.css.map */

@@ -74,6 +74,7 @@ textarea{
 .image_link{
     width: 100%;
     display: none;
+    grid-template-columns: 3fr 1fr 1fr;
     transition: ease-in 1s;
 }
 
@@ -100,4 +101,11 @@ textarea{
         height: 150px;
     }
 
+}
+
+.small-btn {
+    background-color: #243B55;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
 }

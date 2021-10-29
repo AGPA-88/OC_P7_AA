@@ -2,14 +2,11 @@ const mysql = require('mysql');
 const db = require('./config/db.config');
 
 const express = require('express');
-//const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
 
 //OWASP
 const toobusy = require('toobusy-js');
-// app.use(express.urlencoded({ extended: true, limit: "1kb" }));
-// app.use(express.json({ limit: "1kb" }));
 
 const rateLimit = require('express-rate-limit');
 const apiRequestLimiter = rateLimit({
@@ -50,7 +47,6 @@ app.use((req, res, next) => {
 db.authenticate().then( () =>console.log("Data  Base Connected !")).catch((err) => console.log(err));
     
 app.use(express.json());
-//app.use(bodyParser.json());
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/posts', postsRoutes);

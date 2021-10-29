@@ -31,6 +31,7 @@ exports.getPost = (req, res, next) => {
 //POST
 
 exports.createPost = (req, res, next) => {
+    const url = req.protocol + '://' + req.get('host');
     const post = new Post({
         title: req.body.title,
         description: req.body.description,
@@ -38,6 +39,9 @@ exports.createPost = (req, res, next) => {
         userId: req.body.userId,
         readerUsers: ":" + req.body.userId + ":"
     });
+    if (req.file){
+        post.imageUrl =  url + '/images/' + req.file.filename;
+    }
     post.save().then(
         () => {
             res.status(201).json({
@@ -73,7 +77,7 @@ exports.deletePost = (req, res, next) => {
 
 //Update
 exports.update = (req, res, next) => {
-  
+    const url = req.protocol + '://' + req.get('host');
     Post.findOne({where: {id:req.params.id}}).then(
         (post) => {
             if(req.body.title){
@@ -88,6 +92,9 @@ exports.update = (req, res, next) => {
             if(req.body.readerUsers){
                 console.log(post.readerUsers, req.body.readerUsers);
                 post.readerUsers = req.body.readerUsers;
+            }
+            if (req.file){
+                post.imageUrl =  url + '/images/' + req.file.filename;
             }
             post.save().then(
                 () => {

@@ -18,7 +18,8 @@
                         </div>
                         <div class="image_link">
                             <input  v-model="form.media" id="imageValue" type="text" placeholder="Copy link here..." />
-                            <!-- <input type="file"/> -->
+                            <div>or</div>
+                            <div>  <label for="uploadFile" class="small-btn">Local Image</label><input id="uploadFile" type="file" @change="onFileSelected" style="display:none"/></div>
                         </div>
                     </div>
                     <!-- buttons -->
@@ -46,6 +47,7 @@ export default  {
             title:"",
             text:"",
             image:"",
+            selectedFile: null,
 
             form:{
                 userId: '',
@@ -60,19 +62,20 @@ export default  {
     methods:{
       
         handleSubmit(){
-            const _form = {
-                title: this.form.title,
-                description: this.form.message,
-                userId: sessionStorage.getItem('userId'),
-                imageUrl: this.form.media
-            };
+        //Using FormData because of file post
+            const _form = new FormData();
+            _form.append('title', this.form.title);
+            _form.append('description', this.form.message);
+            _form.append('userId', sessionStorage.getItem('userId'));
+            if (this.selectedFile){_form.append('image', this.selectedFile, this.selectedFile.name);}
+            if (this.form.media){_form.append('imageUrl', this.form.media);}
       
             this.createPost(_form);
         },
 
         open_link () {
             let nodeLink = document.querySelector("#imageValue");
-            nodeLink.parentNode.style.display="block";
+            nodeLink.parentNode.style.display="grid";
             let unactiveButton = document.querySelector('.icons_unactive');
             unactiveButton.style.display="none";
             let activeButton = document.querySelector('.icons_active');
@@ -86,6 +89,10 @@ export default  {
             unactiveButton.style.display="block";
             let activeButton = document.querySelector('.icons_active');
             activeButton.style.display="none";
+        },
+
+        onFileSelected (event) {
+            this.selectedFile = event.target.files[0];
         },
           
         ...vuex.mapActions(['createPost'])
