@@ -1,6 +1,6 @@
 # OC_P7_AA
 Clone this repo:
-``git clone https://github.com/AGPA-88/OC_P6_AA``
+``git clone https://github.com/AGPA-88/OC_P7_AA``
 
 ## BackEnd
 
