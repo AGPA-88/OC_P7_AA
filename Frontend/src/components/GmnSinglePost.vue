@@ -1,7 +1,7 @@
 <template>
     <div>
         <gmn-header v-bind:header_index="0"></gmn-header>
-            <gmn-post v-bind:post="post"></gmn-post>
+            <gmn-post v-bind:post="post" class="mx-auto" ></gmn-post>
         <gmn-footer></gmn-footer>
      </div>
 </template>

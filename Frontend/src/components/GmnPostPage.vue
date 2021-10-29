@@ -18,6 +18,7 @@
                         </div>
                         <div class="image_link">
                             <input  v-model="form.media" id="imageValue" type="text" placeholder="Copy link here..." />
+                            <!-- <input type="file"/> -->
                         </div>
                     </div>
                     <!-- buttons -->
@@ -32,10 +33,9 @@
     </div>
 </template>
 <script>
+import GmnHeader from '@/components/GmnHeader';
 import GmnFooter from './GmnFooter.vue';
-import GmnHeader from './GmnHeader.vue';
 import vuex from 'vuex';
-import axios from 'axios';
 
 export default  {
     components: { GmnHeader, GmnFooter },
@@ -60,14 +60,6 @@ export default  {
     methods:{
       
         handleSubmit(){
- 
-            //Using FormData because of file post
-            // const _form = new FormData();
-            // _form.append('title', this.form.title);
-            // // _form.append('media', this.form.media);
-            // _form.append('description', this.form.message);
-            // _form.append('userId', sessionStorage.getItem('userId'));
-            // console.log(_form);
             const _form = {
                 title: this.form.title,
                 description: this.form.message,

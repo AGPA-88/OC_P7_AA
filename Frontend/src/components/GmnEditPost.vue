@@ -32,8 +32,8 @@
     </div>
 </template>
 <script>
+import GmnHeader from '@/components/GmnHeader';
 import GmnFooter from './GmnFooter.vue';
-import GmnHeader from './GmnHeader.vue';
 import vuex from 'vuex';
 import store from './UsersStore';
 

@@ -19,14 +19,17 @@ new Vue({
     template: '<App/>',
     computed: {
         ...Vuex.mapActions([
-            'setUser',
+            'getUser',
             'getUsers',
             'getPosts'
         ])
     },
     mounted(){
-        this.setUser;
-        this.getUsers;
-        this.getPosts;
+        if (sessionStorage.getItem('token')){
+            this.getUser;
+            this.getUsers;
+            this.getPosts;
+        }
+
     }
 });

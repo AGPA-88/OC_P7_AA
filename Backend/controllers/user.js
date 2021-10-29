@@ -65,9 +65,6 @@ exports.signup = (req, res, next) => {
 
 //Update
 exports.update = (req, res, next) => {
-    // User.findOne({
-    //   _id: req.params.id
-    // }).then(
     User.findOne({where: { id: req.params.id }}).then(
         (user) => {
             console.log(req.body);
@@ -114,7 +111,6 @@ exports.update = (req, res, next) => {
 
 //LOGIN
 exports.login = (req, res, next) => {
-    // User.findOne({ email: req.body.email }).then(
     User.findOne({where: { email: req.body.email }}).then(
         (user) => {
             if (!user) {
@@ -158,25 +154,6 @@ exports.login = (req, res, next) => {
 
 //DELETE
 exports.delete = (req, res, next) => {
-    // User.findOneAndRemove({ _id: req.params.id }).then(
-    //   (user) => {
-    //     if (!user) {
-    //       return res.status(401).json({
-    //         message: 'User not found!'
-    //       });
-    //     }else{
-    //       return res.status(201).json({
-    //         message: 'User deleted!'
-    //       });
-    //     }
-    //   }
-    // ).catch(
-    //   (error) => {
-    //     res.status(500).json({
-    //       error: error
-    //     });
-    //   }
-    // );
     User.findOne({where: {id:req.params.id}}).then(
         (user) => {
             user.destroy().then(

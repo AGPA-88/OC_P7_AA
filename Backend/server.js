@@ -8,8 +8,8 @@ const path = require('path');
 
 //OWASP
 const toobusy = require('toobusy-js');
-app.use(express.urlencoded({ extended: true, limit: "1kb" }));
-app.use(express.json({ limit: "1kb" }));
+// app.use(express.urlencoded({ extended: true, limit: "1kb" }));
+// app.use(express.json({ limit: "1kb" }));
 
 const rateLimit = require('express-rate-limit');
 const apiRequestLimiter = rateLimit({

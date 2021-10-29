@@ -31,8 +31,6 @@ exports.getPost = (req, res, next) => {
 //POST
 
 exports.createPost = (req, res, next) => {
-
-    //const url = req.protocol + '://' + req.get('host');
     const post = new Post({
         title: req.body.title,
         description: req.body.description,
@@ -57,7 +55,6 @@ exports.createPost = (req, res, next) => {
 
 //DELETE 
 exports.deletePost = (req, res, next) => {
-    // Post.deleteOne({_id: req.params.id}).then(
     Post.findOne({where: {id:req.params.id}}).then(
         (post) => {
             post.destroy();
@@ -76,10 +73,6 @@ exports.deletePost = (req, res, next) => {
 
 //Update
 exports.update = (req, res, next) => {
-    // Post.findOne({
-    //   _id: req.params.id
-    // }).then(
-    // Post.update(post, {where: {id:req.params.id}}).then( 
   
     Post.findOne({where: {id:req.params.id}}).then(
         (post) => {

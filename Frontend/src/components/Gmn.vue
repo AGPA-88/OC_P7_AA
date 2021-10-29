@@ -8,10 +8,10 @@
             <p id="user-email" >{{ user_email }}</p>
             <h2>First Name</h2>
             <p>
-                <input v-model="form.firstname" id="future_firstname" type="text" placeholder="Enter first name..."/></p>            
+                <input v-model="form.firstname" id="future_firstname" type="text" placeholder="Enter first name..." required/></p>            
             <h2>Last Name</h2>
             <p>
-                <input v-model="form.lastname" id="future_lastname" type="text" placeholder="Enter last name..." />
+                <input v-model="form.lastname" id="future_lastname" type="text" placeholder="Enter last name..." required/>
             </p> 
             <p><button class="btn" type="submit">Update</button></p>
             <!-- <h1>Security</h1>
@@ -28,40 +28,40 @@
 
 
 <script>
-// export default {
-//     name:"Gmn"
-// };
-
+import Gmn from '@/components/Gmn';
 import axios from 'axios';
 import vuex from 'vuex';
+
 export default  {
-    
+    components: { Gmn },
+    computed: {
+        ...vuex.mapGetters(['user_firstname', 'user_lastname', 'user_email'])
+    },
+
     data(){
         return{
 			
             form:{
                 userId: '',
-                user_firstname:'',
-                user_lastname:'',
+                firstname: this.user_firstname,
+                lastname: this.user_lastname,
             }
         };
     },
 
-    computed: {
-        ...vuex.mapGetters(['user_firstname', 'user_lastname', 'user_email'])
-    },
-  
     methods:{
       
         handleSubmit(){
 
             const _form = {
-                user_firstname: this.form.firstname,
-                user_lastname: this.form.lastname,
-                userId: sessionStorage.getItem('userId')
+                id: document.location.href.split('id=')[1],
+                firstname: this.form.firstname,
+                lastname: this.form.lastname
             };
+
+            this.updateUser(_form);
       
-            //Api call -post
+            //Api call
             axios.put("http://localhost:3000/api/auth/",
                 //The data
                 _form,
@@ -82,6 +82,7 @@ export default  {
         ...vuex.mapActions(['updateUser'])
   
     }
+    
 };
 
 </script>

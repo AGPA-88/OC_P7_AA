@@ -34,7 +34,7 @@ const mutations = {
     ADD_USER: (state) => {
         state.user.following++;
     },
-    SET_USER: (state, user) => {
+    GET_USER: (state, user) => {
         state.user.firstname = user.firstname;
         state.user.lastname = user.lastname;
         state.user.email = user.email;
@@ -96,12 +96,12 @@ const getters = {
 const actions = {
 
     // USERS
-    setUser({ commit }) {
+    getUser({ commit }) {
         let auth = {headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token')}};
         if (sessionStorage.getItem('userId')){
             axios.get('http://localhost:3000/api/auth/' + sessionStorage.getItem('userId'), auth)
                 .then(response => {
-                    commit('SET_USER', response.data);
+                    commit('GET_USER', response.data);
                 });
         }
     },
