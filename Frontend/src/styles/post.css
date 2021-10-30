@@ -66,6 +66,16 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .name_date {
+    font-size: 15px;
+  }
+  .name_date time {
+    font-weight: bolder;
+    font-size: 8px;
+  }
+}
+
 .post-img {
   margin: 25px;
   position: center;
@@ -77,7 +87,7 @@
   max-height: 600px;
 }
 
-.edit-button {
+.post-button {
   width: 50px;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0);

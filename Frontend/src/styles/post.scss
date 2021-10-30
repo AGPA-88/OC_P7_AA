@@ -68,6 +68,16 @@
       }
 }
 
+.name_date{
+    @include mobile-view-down{
+        font-size: 15px;
+        time{
+            font-weight: bolder;
+            font-size: 8px; 
+        }
+    }
+}
+
 .post-img{
     margin: 25px;
     position: center;
@@ -79,7 +89,7 @@
 
 }
 
-.edit-button{
+.post-button{
     width: 50px;
     padding: 10px;
     background-color: rgba(0,0,0,0);

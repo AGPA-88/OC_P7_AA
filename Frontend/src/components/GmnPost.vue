@@ -4,14 +4,14 @@
             <div class="flex items-center	justify-between">
                 <div class="gap-3.5	flex items-center ">
                     <img class="object-cover bg-yellow-500 rounded-full w-10 h-10" :src="getWriter.avatarUrl"/>
-                    <div class="flex flex-col">
+                    <div class="flex flex-col name_date">
                         <b class="mb-2 capitalize text-style">{{ getWriter.firstname + ' ' + getWriter.lastname}}</b>
                         <time datetime="06-08-21" class="text-gray-400 text-xs text-style">{{ getCreationDate }}
                         </time>
                     </div>
                 </div>
                 <!-- Remove Button -->
-                <div class="bg-gray-100	rounded-full h-3.5 flex	items-center justify-center edit-button">
+                <div class="bg-gray-100	rounded-full h-3.5 flex	items-center justify-center post-button">
                     <button type="button" @click="expandPost">
                         <span class="material-icons-outlined">
                         open_in_new
